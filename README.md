@@ -32,73 +32,10 @@ Add the package to your `composer.json` and run `composer update`.
 ```json
 {
     "require": {
-        "vinelab/neoeloquent": "^1.4.6"
+        "pratikid/neoeloquent": "^1.4.6"
     }
 }
 ```
-
-
-#### 5.5
-
-```json
-{
-    "require": {
-        "vinelab/neoeloquent": "^1.4.5"
-    }
-}
-```
-
-
-#### 5.4
-
-```json
-{
-    "require": {
-        "vinelab/neoeloquent": "1.4.3"
-    }
-}
-```
-
-#### 5.3
-
-```json
-{
-    "require": {
-        "vinelab/neoeloquent": "1.4.2"
-    }
-}
-```
-
-#### 5.2
-
-```json
-{
-    "require": {
-        "vinelab/neoeloquent": "1.3.*"
-    }
-}
-```
-
-#### 5.1
-
-```json
-{
-    "require": {
-        "vinelab/neoeloquent": "1.2.*"
-    }
-}
-```
-
-#### 5.0
-
-```json
-{
-    "require": {
-        "vinelab/neoeloquent": "1.2.5"
-    }
-}
-```
-
 ### Laravel 4
 
 ```json
@@ -112,7 +49,7 @@ Add the package to your `composer.json` and run `composer update`.
 Add the service provider in `app/config/app.php`:
 
 ```php
-'Vinelab\NeoEloquent\NeoEloquentServiceProvider',
+'pratikid\NeoEloquent\NeoEloquentServiceProvider',
 ```
 
 The service provider will register all the required classes for this package and will also alias
@@ -170,7 +107,7 @@ This is to enable Lumen to read other configurations other than the provided def
 In the case of adding the Service Provider. You must add it in the Register Providers section of `bootstrap/app.php`. You can add it like so:
 
 ```php
-$app->register('Vinelab\NeoEloquent\NeoEloquentServiceProvider');
+$app->register('pratikid\NeoEloquent\NeoEloquentServiceProvider');
 ```
 
 ### Migration Setup
@@ -200,14 +137,14 @@ in this case it will be `:User`. Read about [node labels here](http://docs.neo4j
 When you use namespaces with your models the label will consider the full namespace.
 
 ```php
-namespace Vinelab\Cms;
+namespace pratikid\Cms;
 
 class Admin extends NeoEloquent { }
 ```
 
-The generated label from that relationship will be `VinelabCmsAdmin`, this is necessary to make sure
+The generated label from that relationship will be `pratikidCmsAdmin`, this is necessary to make sure
 that labels do not clash in cases where we introduce another  `Admin` instance like
-`Vinelab\Blog\Admin` then things gets messy with `:Admin` in the database.
+`pratikid\Blog\Admin` then things gets messy with `:Admin` in the database.
 
 ### Custom Node Labels
 
@@ -241,11 +178,11 @@ Do not worry about the labels formatting, You may specify them as `array('Label1
 
 #### Laravel 5
 
-To enable soft deleting you'll need to `use Vinelab\NeoEloquent\Eloquent\SoftDeletes`
+To enable soft deleting you'll need to `use pratikid\NeoEloquent\Eloquent\SoftDeletes`
 instead of `Illuminate\Database\Eloquent\SoftDeletes` and just like Eloquent you'll need the `$dates` in your models as follows:
 
 ```php
-use Vinelab\NeoEloquent\Eloquent\SoftDeletes;
+use pratikid\NeoEloquent\Eloquent\SoftDeletes;
 
 class User extends NeoEloquent {
 
@@ -258,11 +195,11 @@ class User extends NeoEloquent {
 
 #### Laravel 4
 
-To enable soft deleting you'll need to `use Vinelab\NeoEloquent\Eloquent\SoftDeletingTrait`
+To enable soft deleting you'll need to `use pratikid\NeoEloquent\Eloquent\SoftDeletingTrait`
 instead of `Illuminate\Database\Eloquent\SoftDeletingTrait` and just like Eloquent you'll need the `$dates` in your models as follows:
 
 ```php
-use Vinelab\NeoEloquent\Eloquent\SoftDeletingTrait;
+use pratikid\NeoEloquent\Eloquent\SoftDeletingTrait;
 
 class User extends NeoEloquent {
 
@@ -336,7 +273,7 @@ more than just setting the foreign key attribute on the parent model. In Neo4j (
 ```php
 $account = Account::find(1986);
 
-// $relation will be Vinelab\NeoEloquent\Eloquent\Edges\EdgeIn
+// $relation will be pratikid\NeoEloquent\Eloquent\Edges\EdgeIn
 $relation = $user->account()->associate($account);
 
 // Save the relation
@@ -810,7 +747,7 @@ except [HyperEdges](#hyperedges).
 
 ```php
 // Create a new relationship
-$relation = $location->associate($user); // Vinelab\NeoEloquent\Eloquent\Edges\EdgeIn
+$relation = $location->associate($user); // pratikid\NeoEloquent\Eloquent\Edges\EdgeIn
 
 // Save the relationship to the database
 $relation->save(); // true
@@ -1086,8 +1023,8 @@ Neo4jSchema::label('User', function(Blueprint $label)
 
 If you decide to write Migration classes manually (not using the generator) make sure to have these `use` statements in place:
 
-- `use Vinelab\NeoEloquent\Schema\Blueprint;`
-- `use Vinelab\NeoEloquent\Migrations\Migration;`
+- `use pratikid\NeoEloquent\Schema\Blueprint;`
+- `use pratikid\NeoEloquent\Migrations\Migration;`
 
 Currently Neo4j supports `UNIQUE` constraint and `INDEX` on properties. You can read more about them at
 
@@ -1175,7 +1112,7 @@ $emails = DB::table('User')->collect('email');
 ```
 
 ## Changelog
-Check the [Releases](https://github.com/Vinelab/NeoEloquent/releases) for details.
+Check the [Releases](https://github.com/pratikid/NeoEloquent/releases) for details.
 
 ## Avoid
 
